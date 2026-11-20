@@ -5,7 +5,7 @@ public class gdgdfg {
     public static void main(String[] args) {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
-        int secretNumber = random.nextInt(100) + 1;
+        int secretNumber = random.nextInt(100);
         int maxAttempts = 10;
         int attempts = 0;
         System.out.println("Загадано число от 1 до 100. Попробуй угадать его за 10 попыток!");
