@@ -1,74 +1,60 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class  main {
+public class main {
     public static void main(String[] args) {
-        List<String> tasks = new ArrayList<>();
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        System.out.println("Массив:");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(numbers[i] + " ");
+        }
+        System.out.println();
+
+
         Scanner scanner = new Scanner(System.in);
-        boolean work = true;
 
-        while (work) {
-            System.out.println("1 - добавить задачу");
-            System.out.println("2 - удалить первую задачу");
-            System.out.println("3 - удалить задачу по номеру");
-            System.out.println("4 - показать все задачи");
-            System.out.println("5 - выход");
-            System.out.print("Выберите пункт: ");
+        System.out.print("Что сделать? (1 - добавить, 2 - удалить): ");
+        int choice = scanner.nextInt();
 
-            String choice = scanner.nextLine();
+        if (choice == 1) {
+            System.out.print("Введите число для добавления: ");
+            int num = scanner.nextInt();
 
-            if (choice.equals("1")) {
-                System.out.print("Введите текст задачи: ");
-                String text = scanner.nextLine();
-                tasks.add(text);
-                System.out.println("Задача добавлена!");
 
-            } else if (choice.equals("2")) {
-                if (tasks.isEmpty()) {
-                    System.out.println("Список пуст");
-                } else {
-                    tasks.remove(0);
-                    System.out.println("Первая задача удалена.");
-                }
+            int[] big = new int[6];
 
-            } else if (choice.equals("3")) {
-                if (tasks.isEmpty()) {
-                    System.out.println("Список пуст");
-                } else {
-                    System.out.print("Введите номер задачи: ");
-                    try {
-                        int num = Integer.parseInt(scanner.nextLine());
-                        int index = num - 1;
-                        if (index < 0 || index >= tasks.size()) {
-                            System.out.println("Неверный номер");
-                        } else {
-                            tasks.remove(index);
-                            System.out.println("Задача удалена.");
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Неверный номер");
-                    }
-                }
+            for (int i = 0; i < 5; i++) {
+                big[i] = numbers[i];
+            }
 
-            } else if (choice.equals("4")) {
-                if (tasks.isEmpty()) {
-                    System.out.println("Список пуст");
-                } else {
-                    System.out.println("Список:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println((i + 1) + ". " + tasks.get(i));
-                    }
-                }
+            big[5] = num;
 
-            } else if (choice.equals("5")) {
-                work = false;
-                System.out.println("Выход из программы...");
-
-            } else {
-                System.out.println("Неверная команда");
+            System.out.println("Стало:");
+            for (int i = 0; i < 6; i++) {
+                System.out.print(big[i] + " ");
             }
         }
+
+        if (choice == 2) {
+            System.out.print("Какой индекс удалить (0-4): ");
+            int index = scanner.nextInt();
+
+            if (index < 0 || index > 4) {
+                System.out.println("Ошибка: такого индекса нет!");
+            } else {
+                System.out.println("Стало (без элемента " + index + "):");
+                for (int i = 0; i < 5; i++) {
+                    if (i != index) {
+                        System.out.print(numbers[i] + " ");
+                    }
+                }
+            }
+        }
+
+        if (choice != 1 && choice != 2) {
+            System.out.println("Неверная команда");
+        }
+
         scanner.close();
     }
 }
